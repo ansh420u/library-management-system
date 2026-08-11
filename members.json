@@ -1,0 +1,21 @@
+[
+    {
+        "member_id": "101M",
+        "name": "Anshu jaiswal",
+        "issued_books": [
+            "javascript"
+        ]
+    },
+    {
+        "member_id": "karan banik",
+        "name": "102K",
+        "issued_books": []
+    },
+    {
+        "member_id": "103R",
+        "name": "Rahul Shaw",
+        "issued_books": [
+            "python"
+        ]
+    }
+]

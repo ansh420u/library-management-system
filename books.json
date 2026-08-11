@@ -2,12 +2,12 @@
     {
         "title": "python",
         "author": "charles darwin",
-        "is_issued": false
+        "is_issued": true
     },
     {
         "title": "operating system",
         "author": "Rohanda byren",
-        "is_issued": false
+        "is_issued": true
     },
     {
         "title": "discreate mathematics",
@@ -17,6 +17,16 @@
     {
         "title": "design analysis of algorithm",
         "author": "team bern lee",
+        "is_issued": true
+    },
+    {
+        "title": "HTML",
+        "author": "jhon dalton",
+        "is_issued": false
+    },
+    {
+        "title": "javascript",
+        "author": "django king",
         "is_issued": true
     }
 ]
