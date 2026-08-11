@@ -1,3 +1,4 @@
+import json
 class Book:
 
     def __init__(self, title, author):
@@ -7,10 +8,11 @@ class Book:
 
 
 class Library:
+    
 
     def __init__(self):
         self.books = []
-
+        self.load_books()
     def add_book(self):
 
         title = input("Enter book title: ")
@@ -19,6 +21,8 @@ class Library:
         book = Book(title, author)
 
         self.books.append(book)
+
+        self.save_books()
 
         print("Book added successfully!")
 
@@ -38,6 +42,40 @@ class Library:
             print("Title:", book.title)
             print("Author:", book.author)
             print("Status:", status)
+    def load_books(self):
+
+        try:
+            with open("books.json", "r") as file:
+                data = json.load(file)
+
+                for book_data in data:
+                    book = Book(
+                        book_data["title"],
+                        book_data["author"]
+                    )
+
+                    book.is_issued = book_data["is_issued"]
+
+                    self.books.append(book)
+
+        except FileNotFoundError:
+            self.books = []
+    def save_books(self):
+
+        data = []
+
+        for book in self.books:
+
+            book_data = {
+                "title": book.title,
+                "author": book.author,
+                "is_issued": book.is_issued
+            }
+
+            data.append(book_data)
+
+        with open("books.json", "w") as file:
+            json.dump(data, file, indent=4)
 
     def search_book(self):
 
@@ -74,7 +112,7 @@ class Library:
                     return
 
                 book.is_issued = True
-
+                self.save_books()
                 print("Book issued successfully!")
                 return
 
@@ -93,7 +131,7 @@ class Library:
                     return
 
                 book.is_issued = False
-
+                self.save_books()
                 print("Book returned successfully!")
                 return
 
@@ -108,7 +146,7 @@ class Library:
             if book.title.lower() == title.lower():
 
                 self.books.remove(book)
-
+                self.save_books()
                 print("Book deleted successfully!")
                 return
 
